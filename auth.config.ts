@@ -18,6 +18,8 @@ export default {
         }),
         Credentials({
             async authorize(credentials){
+                console.log("En Authorize")
+                console.log(credentials)
                 const validatedFields = LoginSchema.safeParse(credentials)
                 if (validatedFields.success){
                     const { email, password } = validatedFields.data
@@ -30,9 +32,10 @@ export default {
                         password,
                         user.password
                     )
-                    console.log("Contrasena validada", passwordMatch)
+                    console.log("Contrasena valida", passwordMatch)
                     if (passwordMatch) return user
                 }
+                console.log("No authorize")
                 return null
             }
         })

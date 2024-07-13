@@ -53,13 +53,15 @@ import {
 const { auth } = NextAuth(authConfig)
 
 export default auth((req) => {
+    console.log("Middleware")
+    // console.log(req)
     const { nextUrl } = req
     const isLoggedIn = !!req.auth
 
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
     const isAuthRoute = authRoutes.includes(nextUrl.pathname)
-    console.log("Middleware")
+
     if (isApiAuthRoute){
         return null
     }

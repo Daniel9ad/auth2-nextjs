@@ -16,6 +16,7 @@ export const {
     },
     events: {
         async linkAccount({ user }) {
+            console.log("En linkAccount", user)
             await db.user.update({
                 where: { id: user.id },
                 data: { emailVerified: new Date()}
@@ -23,11 +24,14 @@ export const {
         }
     },
     callbacks: {
-        async signIn({ user, account }){
+        async signIn({ user, account, profile, email, credentials }){
+            console.log("En signIn:", account?.provider)
+            console.log({ user, account, profile, email, credentials }) 
             if (account?.provider !== "credentials") return true
             const existingUser = await getUserById(user.id)
-
+            
             if (!existingUser?.emailVerified) return false
+
             // const existingUser = await getUserById(user.id)
             // if (!existingUser || !existingUser.emailVerified){
             //     return false

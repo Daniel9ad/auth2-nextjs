@@ -9,6 +9,7 @@ import { getUserByEmail } from "@/data/user"
 import { generateVerificationToken } from "@/lib/token"
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
+    console.log("En login...")
     const validatedFields = LoginSchema.safeParse(values)
 
     if (!validatedFields.success){
@@ -18,7 +19,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     const { email, password } = validatedFields.data
     
     const existingUser = await getUserByEmail(email)
-    
+    console.log("Respuesta bd")
     if (!existingUser || !existingUser.email || !existingUser.password){
         return { error: "Email does not exist"}
     }
@@ -34,6 +35,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
             password: password,
             redirectTo: DEFAULT_LOGIN_REDIRECT
         })
+        
     }catch(error){
         if (error instanceof AuthError){
             switch (error.type){
