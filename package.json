@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@auth/prisma-adapter": "^2.4.1",
     "@hookform/resolvers": "^3.6.0",
     "@prisma/client": "^5.16.1",
@@ -26,6 +27,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.52.0",
     "react-icons": "^5.2.1",
+    "react-spinners": "^0.14.1",
     "resend": "^3.4.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
